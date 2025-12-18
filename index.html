@@ -1,23 +1,382 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "InsuranceProduct",
+      "name": "환급형운전자보험",
+      "description": "납입한 보험료의 일부 또는 전부를 만기에 돌려받는 운전자 보험 서비스로, 2026년 최신 교통법규 보장 내용을 포함합니다.",
+      "provider": {
+        "@type": "Organization",
+        "name": "환급형운전자보험 전문 분석 센터",
+        "url": "https://yourdomain.com"
+      },
+      "areaServed": "KR",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "KRW",
+        "description": "연령 및 직업군에 따른 맞춤형 설계 제공"
+      }
+    }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-soft: #f8fafc;
+            --text-main: #334155;
+            --white: #ffffff;
+            --border-light: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+            background-color: var(--bg-soft);
+            color: var(--text-main);
+            word-break: keep-all;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background: var(--white);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            border-left: 6px solid var(--accent-color);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.6rem;
+            margin-top: 2.5rem;
+            color: #1e293b;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+
+        .info-table th, .info-table td {
+            padding: 1.2rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .info-table th {
+            background-color: #f1f5f9;
+            font-weight: 700;
+        }
+
+        .form-container {
+            background: #f1f5f9;
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .submit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .tag-cloud span {
+            background: #e2e8f0;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        footer {
+            background: #1e293b;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .link-list a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>2026 환급형운전자보험 통합 가이드</h1>
+    <p>운전자의 권리와 자산을 동시에 보호하는 스마트한 선택</p>
+</header>
+
+<nav>
+    <a href="#intro">정의 및 특징</a>
+    <a href="#comparison">보장 비교</a>
+    <a href="#laws">2026 개정법규</a>
+    <a href="#check">가입 체크리스트</a>
+    <a href="#consulting">무료 견적 상담</a>
+</nav>
+
+<main>
+    <section id="intro">
+        <h2>환급형운전자보험이란 무엇인가</h2>
+        <p>
+            환급형운전자보험은 자동차 보험으로는 부족한 운전자 본인의 형사적, 행정적 책임을 보장하는 상품으로, 납입 기간 종료 후 만기 시점에 고객이 납입한 보험료의 일정 부분 혹은 전액을 환급금 형태로 돌려받을 수 있는 상품을 의미합니다. 이는 보장 기능만 있는 순수보장형과 대비되는 개념으로, 저축의 성격을 동시에 지니고 있어 장기적인 자산 관리를 원하는 운전자들에게 선호도가 높습니다. 
+        </p>
+        <p>
+            특히 2026년을 기점으로 강화된 도로교통법령에 따라 교통사고처리지원금의 한도가 상향 조정되었으며, 변호사선임비용의 보장 범위 또한 경찰 조사 단계까지 확대되었습니다. 이러한 변화 속에서 환급형운전자보험은 사고 발생 시의 경제적 타격을 최소화하는 동시에 미래의 목적 자금을 마련하는 이중적인 역할을 수행합니다.
+        </p>
+        <div class="tag-cloud">
+            <span>환급형운전자보험비용</span> <span>운전자보험환급금조회</span> <span>운전자보험만기환급금</span> <span>운전자보험순수보장형비교</span> <span>자동차운전자보험추천</span> <span>운전자보험가입요령</span>
+        </div>
+    </section>
+
+    <section id="comparison">
+        <h2>운전자보험 유형별 세부 비교 분석</h2>
+        <p>운전자의 성향에 따라 환급형과 순수보장형 중 적합한 상품을 선택하는 것이 중요합니다. 아래는 2026년 기준 두 유형의 객관적 차이점입니다.</p>
+        <table class="info-table">
+            <thead>
+                <tr>
+                    <th>구분</th>
+                    <th>환급형운전자보험</th>
+                    <th>순수보장형운전자보험</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>월 보험료</td>
+                    <td>상대적으로 높음 (적립보험료 포함)</td>
+                    <td>상대적으로 저렴함 (보장 보험료만 존재)</td>
+                </tr>
+                <tr>
+                    <td>만기 시 혜택</td>
+                    <td>납입 보험료의 일부 또는 전액 환급</td>
+                    <td>만기 시 소멸 (환급금 없음)</td>
+                </tr>
+                <tr>
+                    <td>가입 목적</td>
+                    <td>보장과 목돈 마련 동시 추구</td>
+                    <td>최소 비용으로 핵심 보장 집중</td>
+                </tr>
+                <tr>
+                    <td>주요 보장 내용</td>
+                    <td colspan="2">교통사고처리지원금, 변호사선임비용, 벌금(대인/대물), 자동차사고부상치료비 등 동일</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="laws">
+        <h2>2026년 개정 도로교통법과 보험의 필요성</h2>
+        <p>
+            최근 시행된 도로교통법 개정안에 따르면 어린이 보호구역 및 노인 보호구역 내에서의 사고에 대한 처벌 수위가 대폭 강화되었습니다. 2026년부터는 자율주행 차량 보급 확대에 따른 새로운 과실 비율 산정 기준이 적용되며, 이에 따라 운전자가 부담해야 할 법적 비용의 리스크가 과거보다 복잡해졌습니다. 
+        </p>
+        <p>
+            환급형운전자보험은 이러한 환경 변화에 대응하여 다음과 같은 필수 특약을 제공합니다. 첫째, 교통사고처리지원금은 최대 2억 원 이상으로 증액 설계가 가능해졌습니다. 둘째, 과거 재판 단계에서만 지급되던 변호사선임비용이 경찰 조사 시점부터 실비 보장되도록 개선되었습니다. 셋째, 스쿨존 사고 벌금뿐만 아니라 일반 도로에서의 대물 벌금 보장 한도 역시 상향되었습니다.
+        </p>
+        <h3>함께 많이 찾는 카테고리 정보</h3>
+        <ul class="link-list">
+            <li>운전자보험 가입 시 주의사항: 중복 보장 여부 확인</li>
+            <li>민심법 개정 이후 운전자보험 필수 담보 분석</li>
+            <li>직업별 운전자보험 요율 차이 및 할인 혜택</li>
+        </ul>
+    </section>
+
+    <section id="consulting">
+        <h2>환급형운전자보험 맞춤형 견적 및 정밀 분석</h2>
+        <p>본인의 운전 패턴과 연령, 차량 종류에 맞는 최적의 환급형운전자보험을 분석해 드립니다. 아래 정보를 상세히 입력하시면 전문 상담원이 2026년 최신 상품 비교표를 송부해 드립니다.</p>
+        
+        <div class="form-container">
+            <form action="#" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">성함 (실명)</label>
+                        <input type="text" id="name" name="name" placeholder="성함을 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처</label>
+                        <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">연령 (만 나이)</label>
+                        <input type="number" id="age" name="age" placeholder="예: 35">
+                    </div>
+                    <div class="form-group">
+                        <label for="job">현재 직업</label>
+                        <select id="job" name="job">
+                            <option value="office">사무직</option>
+                            <option value="driver">전문 운전직</option>
+                            <option value="service">서비스/현장직</option>
+                            <option value="etc">기타/자영업</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="type">희망 보험료 수준</label>
+                        <select id="type" name="type">
+                            <option value="low">3만원 미만 (실속형)</option>
+                            <option value="mid">3만원 ~ 5만원 (표준형)</option>
+                            <option value="high">5만원 이상 (환급 강화형)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="driving_exp">운전 경력</label>
+                        <input type="text" id="driving_exp" name="driving_exp" placeholder="예: 10년">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="current_ins">기존 가입 보험 정보 및 궁금한 점</label>
+                        <textarea id="current_ins" name="current_ins" rows="5" placeholder="현재 가입 중인 자동차 보험사나 운전자 보험에 대해 메모를 남겨주세요. 상세할수록 정확한 분석이 가능합니다."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>
+                            <input type="checkbox" name="privacy" required> 개인정보 수집 및 이용 동의 (최신 보험 정보 제공 목적)
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">나의 예상 환급금 및 견적 확인하기</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <h2>공인된 신뢰성 자료 및 참고 문헌</h2>
+        <p>보험 가입 전 국가 기관 및 공신력 있는 기관의 정보를 통해 객관적인 기준을 확인하시기 바랍니다.</p>
+        <ul class="link-list">
+            <li><a href="https://www.fss.or.kr" target="_blank">금융감독원 - 보험 상품 가입 시 유의사항 안내</a></li>
+            <li><a href="https://www.klia.or.kr" target="_blank">생명보험협회/손해보험협회 공시실 - 보험료 비교 공시</a></li>
+            <li><a href="https://www.molit.go.kr" target="_blank">국토교통부 - 자동차 안전 및 관련 법규 안내</a></li>
+            <li><a href="https://namu.wiki/w/%EC%9A%B4%EC%A0%84%EC%9E%90%20%EB%B3%B4%ED%97%98" target="_blank">나무위키 - 운전자 보험의 개념과 역사</a></li>
+            <li><a href="https://www.kidi.or.kr" target="_blank">보험개발원 - 자동차사고 통계 및 요율 정보</a></li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>본 페이지에 수록된 정보는 일반적인 안내 목적으로 작성되었으며, 개별 보험 상품의 약관에 따라 보장 내용이 달라질 수 있습니다.</p>
+    <p>&copy; 2026 환급형운전자보험 전문 분석 정보 센터. All Rights Reserved.</p>
+</footer>
+
+</body>
 </html>
